@@ -1,4 +1,4 @@
-# Bakalářská práce
+# Bakalářská práce – Návrh a implementace webové aplikace pro neziskovou organizaci
 
 Tato bakalářská práce se zabývá analýzou požadavků, návrhem a následnou implementací webové aplikace s databází v neziskové organizaci.
 

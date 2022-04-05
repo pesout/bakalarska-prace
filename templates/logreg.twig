@@ -1,0 +1,45 @@
+{% extends 'base.twig' %}
+
+{% block title %} {{ pagename }} {% endblock %}
+
+{% block body %}
+
+    <main>
+        <div class="page-content">
+            <div class="logreg-form">
+                <div>
+                    <h2>ČSOP&nbsp;Vlašim</h2>
+                    <h3>{{ pagename }}</h3>
+                </div>
+                <div class="inputs">
+                    <form id="logreg">
+                        {% if page_id == "prihlaseni" %}
+                            <label for="username">Uživatelské jméno</label>
+                            <input class="form-control" type="text" id="username" name="username">
+                            <label for="password">Heslo</label>
+                            <input class="form-control" type="password" id="password" name="password">
+                            <button type="submit" class="btn btn-dark" id="logreg_button">
+                                <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp; Přihlásit se
+                            </button>
+                            Ještě nemáte účet? <a href="?page=registrace">Zaregistrujte se</a>.                    
+                        {% else %}                     
+                            <label for="username">Uživatelské jméno</label>
+                            <input class="form-control" type="text" id="username" name="username">
+                            <label for="password">Heslo</label>
+                            <input class="form-control" type="password" id="password" name="password">
+                            <label for="password2">Heslo znovu pro kontrolu</label>
+                            <input class="form-control" type="password" id="password2" name="password2">
+                            <label for="code">Zvací kód</label>
+                            <input class="form-control" type="text" id="code" name="code">
+                            <button type="submit" class="btn btn-dark" id="logreg_button">
+                                <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp; Registrovat se
+                            </button>
+                            Již máte účet? <a href="?page=prihlaseni">Přihlaste se</a>.                           
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

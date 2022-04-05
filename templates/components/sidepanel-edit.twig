@@ -1,0 +1,29 @@
+<div id="sidepanel_edit" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closePanel('sidepanel_edit')">&times;</a>
+    <form id="edit" autocomplete="off">
+        <h3>Detail</h3>
+        <div class="container">
+            <div>{% include "components/field-block.twig" with {"flex": 1, "page": "edit"} %}</div>
+            <div>{% include "components/field-block.twig" with {"flex": 2, "page": "edit"} %}</div>
+        </div>
+        <div class="container-textarea">
+            <label for="poznamka_edit">Poznámka</label>
+            <textarea class="form-control" id="poznamka_edit" name="poznamka" rows="4" maxlength="200"></textarea>
+            <table class="table table-sm not-editable">
+                {% for column in columns %}
+                    {% if not column.editable and column.type == "" %}
+                        <tr><td scope="row">{{column.name}}</td><td id="{{column.value}}_detail"></td></tr>
+                    {% endif %}
+                {% endfor %}
+                {% if page_id == "Lide" or page_id == "Organizace" %}
+                    <tr><td scope="row"><a href="javascript:void(0)" onclick="openPanel('sidepanel_history')"><i class="fas fa-history"></i> Historie interakcí</a></td><td></td></tr>
+                {% endif %}
+            </table>
+        </div>       
+        <div class="container-button">                 
+            <button class="btn btn-dark" type="submit" id="new_edit"><i class="fas fa-save"></i>&nbsp;&nbsp;Uložit změny</button>        
+            <button class="btn btn-secondary" type="button" onclick="closePanel('sidepanel_edit')"><i class="fas fa-arrow-right"></i>&nbsp;&nbsp;Zavřít panel</button>  
+            {% if page_id != "AkceTyp" %} <button class="btn btn-danger" type="submit" id="new_remove"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Odstranit</button> {% endif %}
+        </div>              
+    </form>
+</div>

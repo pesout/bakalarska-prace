@@ -1,0 +1,58 @@
+<div id="sidepanel_history" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closePanel('sidepanel_history')">&times;</a>
+    <h3>Historie interakcí (<span id="history_top_header"></span>)</h3>
+    <div class="container">
+        <h4>Dary &nbsp;&nbsp;
+            <i
+                class="fas fa-chevron-right"
+                id="arrow_r_dary"
+                style="cursor:pointer"
+                onclick="hide(this); show('table_history_dary', 'table'); show('arrow_b_dary', 'inline')"
+            ></i>
+            <i
+                class="fas fa-chevron-down"
+                id="arrow_b_dary"
+                style="cursor:pointer; display:none"
+                onclick="hide(this); hide('table_history_dary'); show('arrow_r_dary', 'inline')"
+            ></i>
+        </h4>
+        <table class="table table-sm not-editable" style="display:none" id="table_history_dary">
+            <thead id="table_history_dary_header">
+                <tr>
+                    {% for column in history_columns.dary %}
+                        <th scope="col" id="{{column.value}}">{{column.name}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody id="table_history_dary_body"></tbody>
+        </table>
+
+        <h4>Účasti na akcích &nbsp;&nbsp;
+            <i
+                class="fas fa-chevron-right"
+                id="arrow_r_akce"
+                style="cursor:pointer"
+                onclick="hide(this); show('table_history_akce', 'table'); show('arrow_b_akce', 'inline')"
+            ></i>
+            <i
+                class="fas fa-chevron-down"
+                id="arrow_b_akce"
+                style="cursor:pointer; display:none"
+                onclick="hide(this); hide('table_history_akce'); show('arrow_r_akce', 'inline')"
+            ></i>
+        </h4>
+        <table class="table table-sm not-editable" style="display:none" id="table_history_akce">
+            <thead id="table_history_akce_header">
+                <tr>
+                    {% for column in history_columns.akce %}
+                        <th scope="col" id="{{column.value}}">{{column.name}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody id="table_history_akce_body"></tbody>
+        </table>
+    </div> 
+    <div class="container-button">
+        <button class="btn btn-secondary" type="button" onclick="closePanel('sidepanel_history')"><i class="fas fa-arrow-right"></i>&nbsp;&nbsp;Zavřít panel</button>
+    </div>
+</div>

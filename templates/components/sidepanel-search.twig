@@ -1,0 +1,62 @@
+<div id="sidepanel_search" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closePanel('sidepanel_search')">&times;</a> 
+    <form id="search">
+        <h3>Vyhledávání</h3>
+        <h4>Parametry</h4>
+        <div id="search_form_inputs" class="search-form-inputs">
+            <div class="form-group columns" id="column1">
+                <select class="form-control column-name" name="column1_name" id="column1_name">
+                    <option value="" disabled selected>Vyberte...</option>
+                    {% for column in columns %}                           
+                        {% if column.search %} <option value="{{column.value}}">{{column.name}}</option> {% endif %}
+                    {% endfor %}
+                </select>
+                <select class="form-control" name="column1_exact" id="column1_exact">
+                    <option value="false">obsahuje</option>
+                    <option value="true">je přesně</option>
+                    <option value="filled">je vyplněno</option>
+                </select>
+                <input class="form-control" name="column1_content" id="column1_content" type="text">
+                <table class="table table-sm autocomplete" id="column1_content_autocomplete" style="display:none"></table>
+                <select class="form-control" name="column1_boolean" id="column1_boolean" style="display:none">
+                    <option value="" disabled selected>Vyberte...</option>
+                    <option value="1">ano</option>
+                    <option value="0">ne</option>
+                </select>
+                <button class="btn btn-danger" type="button" onclick="removeSearchParam('column1')"><i class="fas fa-minus"></i></i></button>
+            </div>
+        </div>
+        <button class="btn btn-dark" type="button" onclick="addSearchParam()"><i class="fas fa-plus"></i></button>
+        <h4>Řadit podle</h4>
+        <div class="form-group columns">
+            <select class="form-control" name="order" id="order">
+                <option value="" disabled selected>Vyberte...</option>
+                {% for column in columns %}
+                    {% if column.sort %} <option value="{{column.value}}">{{column.name}}</option> {% endif %}
+                {% endfor %}
+            </select>
+            <select class="form-control" name="order_direction" id="order_direction">
+                <option value="ASC">vzestupně</option>
+                <option value="DESC">sestupně</option>
+            </select>
+        </div>
+        <h4>Zobrazit sloupce</h4>
+        <div class="form-group displayed-columns">
+            {% for column in columns %}
+                {% if column.checkbox %}
+                    <div>
+                        <input 
+                            type="checkbox" 
+                            id="{{column.value}}_display" 
+                            name="{{column.value}}_display"
+                            {{ (column.checked) ? "checked" : "" }}
+                        >&nbsp;
+                        <label for="{{column.value}}_display"> {{column.name}}</label>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <button class="btn btn-dark" type="submit" id="new_search"><i class="fas fa-search"></i>&nbsp;&nbsp;Vyhledat</button>                   
+    </form>                
+</div>

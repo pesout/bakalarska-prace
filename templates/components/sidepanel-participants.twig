@@ -1,0 +1,16 @@
+<div id="sidepanel_participants" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closePanel('sidepanel_participants')">&times;</a>
+    <h3>Účastníci</h3>
+    <div class="container-button">
+        <button class="btn btn-dark" id="insert_participant" onclick="show('add_participant');_('add_participant').focus()"><i class="fas fa-plus"></i>&nbsp;&nbsp;Přidat</button>
+        <button class="btn btn-dark" onclick="displayParticipantsFromQueue()" id="insert_from_queue"><i class="fas fa-plus"></i>&nbsp;&nbsp;Vložit z fronty</button>
+        <button onclick="displayParticipants([])" class="btn btn-danger" id="remove_all_participants"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Odstranit všechny</button>
+        <input type="text" id="add_participant" class="form-control" style="display:none" placeholder="Napište jméno nebo firmu...">
+        <table class="table table-sm autocomplete" id="add_participant_autocomplete" style="display:none"></table>
+    </div> 
+    <div class="container participants" id="participants"></div>
+    <div class="container-button">
+        <button class="btn btn-dark" type="button" id="save_participants" onclick="saveParticipants()"><i class="fas fa-save"></i>&nbsp;&nbsp;Uložit</button>
+        <button class="btn btn-secondary" type="button" onclick="closePanel('sidepanel_participants')"><i class="fas fa-arrow-right"></i>&nbsp;&nbsp;Zavřít panel</button>
+    </div>         
+</div>

@@ -1,0 +1,30 @@
+<table class="table table-striped table-hover table-sm" id="table_result">
+    <thead>
+        <tr>
+            {% for column in columns %}
+                <th style="display:none" scope="col" id="{{column.value}}_header">{{column.name}}</th>
+            {% endfor %}
+            <th scope="col">
+                {% if page_id == "Lide" %}
+                    <button onclick="moveToQueue()" class="btn btn-outline-dark btn-sm">
+                        <i class='fas fa-arrow-up'></i><i class='fas fa-arrow-up'></i> 
+                        Všichni do fronty
+                    </button>
+                {% endif %}
+                {% if page_id == "Dary" %}
+                    <button onclick="moveDonorsToQueue()" class="btn btn-outline-dark btn-sm">
+                        <i class='fas fa-arrow-up'></i><i class='fas fa-arrow-up'></i> 
+                        Všichni dárci do fronty
+                    </button>
+                {% endif %}
+                {% if page_id == "Akce" %}
+                    <button onclick="moveParticipantsToQueue()" class="btn btn-outline-dark btn-sm">
+                        <i class='fas fa-arrow-up'></i><i class='fas fa-arrow-up'></i> 
+                        Všichni účastníci do fronty
+                    </button>
+                {% endif %}
+            </th>
+        </tr>
+    </thead>
+    <tbody id="table-result-body"></tbody>
+</table>

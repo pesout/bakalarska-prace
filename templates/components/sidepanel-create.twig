@@ -1,0 +1,18 @@
+<div id="sidepanel_create" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closePanel('sidepanel_create')">&times;</a>
+    <form id="create" autocomplete="off">
+        <h3>Přidat</h3>
+        <div class="container">
+            <div>{% include "components/field-block.twig" with {"flex": 1, "page": "create"} %}</div>
+            <div>{% include "components/field-block.twig" with {"flex": 2, "page": "create"} %}</div>
+        </div>
+        <div class="container-textarea">
+            <label for="poznamka_create">Poznámka</label>
+            <textarea class="form-control" id="poznamka_create" name="poznamka" rows="4" maxlength="200"></textarea>
+        </div>
+        <div class="container-button">
+            <button class="btn btn-dark" type="submit" id="new_create"><i class="fas fa-save"></i>&nbsp;&nbsp;Uložit</button>
+            <button class="btn btn-secondary" type="button" onclick="closePanel('sidepanel_create')"><i class="fas fa-arrow-right"></i>&nbsp;&nbsp;Zavřít panel</button>
+        </div>
+    </form>                
+</div>

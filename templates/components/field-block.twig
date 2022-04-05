@@ -1,0 +1,36 @@
+{% for column in columns %}
+    {% if column.flex == flex %}
+        <label for="{{column.value}}_{{page}}" style="display:flex; justify-content:space-between">
+            <div>{{column.name}}
+            {{column.required ? "*" : ""}}</div>
+            <div style="padding-right:0">{% if column.name == "Typ" %} <a href="?page=typy-akci" target="_blank"><i class="fas fa-edit"></i> Správa typů</a> {% endif %}</div>
+        </label>
+        {% if column.type == "boolean" %}
+            <select class="form-control" name="{{column.value}}" id="{{column.value}}_{{page}}">
+                <option value="1">ano</option><option value="0">ne</option>
+            </select>
+        {% else %}                           
+            <input 
+                class="form-control" 
+                name="{{column.value}}" 
+                id="{{column.value}}_{{page}}" 
+                {% if column.type == "queue" %} 
+                    type="text"
+                    {% if page == "create" %}
+                        onfocus="editParticipants('create')"
+                    {% else %}
+                        onfocus="editParticipants('edit')"
+                    {% endif %}
+                {% else %}
+                    type="{{column.type}}"
+                {% endif %}
+                {% if column.type != "email" %} pattern="{{column.pattern}}" {% endif %}
+                maxlength="{{column.maxlength}}" 
+                {{column.required ? "required" : ""}}                                
+            >
+            {% if column.autocomp %}
+                <table class="table table-sm autocomplete" id="{{column.value}}_{{page}}_autocomplete" style="display:none"></table>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endfor %}

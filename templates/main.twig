@@ -1,0 +1,51 @@
+{% extends 'base.twig' %}
+
+{% block title %} {{ pagename }} {% endblock %}
+
+{% block body %}
+
+    <div class="header">
+        <h1>ČSOP Vlašim</h1>
+        <div style="display:none" class="loading-icon" id="loading_icon"></div> 
+    </div>
+
+    <div class="main-menu">
+        {% for key, item in menu %}
+            <a href="?page={{key}}"><i class="{{item.icon}}"></i>&nbsp;{{item.name}}</a>
+        {% endfor %}
+    </div>
+
+    <main>
+        <div class="page-content">
+
+            {% include "components/queue.twig" %}
+
+            <h2>{{ pagename }}</h2>
+
+            <button onclick="openPanel('sidepanel_search')" class="btn btn-dark main-button"><i class="fas fa-search"></i> Vyhledávání</button>
+            <button onclick="openPanel('sidepanel_create')" class="btn btn-dark main-button"><i class="fas fa-plus"></i> Přidat</button>
+            
+            {% include "components/sidepanel-search.twig" %}
+            {% include "components/sidepanel-create.twig" %}
+            {% include "components/sidepanel-edit.twig" %}
+
+            {% if page_id == "Lide" or  page_id == "Organizace" %}
+                {% include "components/sidepanel-history.twig" %}
+            {% endif %}
+
+            {% if page_id == "Akce" %}
+                {% include "components/sidepanel-participants.twig" %}
+            {% endif %}
+            
+            {% include "components/table-result.twig" %}
+        </div>
+    </main>
+
+    <footer>
+        <div>Přihlášený uživatel: <strong>{{user}}</strong></div>
+        <div><a href="javascript:void()" onclick="logout()">Odhlásit se</a></div>
+    </footer>
+
+    <div id="overlay"></div>
+
+{% endblock %}
